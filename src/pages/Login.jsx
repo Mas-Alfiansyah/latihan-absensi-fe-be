@@ -37,7 +37,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-100">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
       <div className="w-full max-w-md">
         <form onSubmit={submit} className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-200 backdrop-blur-sm">
           <div className="text-center mb-6">
@@ -68,7 +68,7 @@ export default function Login() {
             </div>
           </div>
 
-          <button className="w-full mt-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg">Login</button>
+          <button className="w-full mt-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg">Login</button>
 
           <p className="text-center mt-4 text-sm text-gray-600">
             Don't have an account? <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Register here</Link>

@@ -30,31 +30,66 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={submit} className="p-6 bg-white rounded shadow-md w-96 max-w-full">
-        <h2 className="text-lg font-semibold mb-3">Register</h2>
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
+      <div className="w-full max-w-md">
+        <form onSubmit={submit} className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-200 backdrop-blur-sm">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Create Account</h2>
+            <p className="text-gray-600 text-sm">Join us today</p>
+          </div>
 
-        <input className="w-full border p-2 mb-2 rounded" placeholder="Name" value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 outline-none"
+                placeholder="Enter your full name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+            </div>
 
-        <input className="w-full border p-2 mb-2 rounded" placeholder="Email" value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 outline-none"
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+            </div>
 
-        <input className="w-full border p-2 mb-2 rounded" placeholder="Password" type="password" value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })} />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 outline-none"
+                type="password"
+                placeholder="Create a password"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+              />
+            </div>
 
-        <select className="w-full border p-2 mb-4 rounded" value={form.role}
-          onChange={(e) => setForm({ ...form, role: e.target.value })}>
-          <option value="teacher">Teacher</option>
-          <option value="admin">Admin</option>
-        </select>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+              <select
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 outline-none bg-white"
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
+              >
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          </div>
 
-        <button className="w-full p-2 bg-green-600 text-white rounded">Register</button>
+          <button className="w-full mt-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg">Register</button>
 
-        <p className="text-center mt-3 text-sm">
-          Sudah punya akun? <Link to="/login" className="text-blue-600">Login</Link>
-        </p>
-      </form>
+          <p className="text-center mt-4 text-sm text-gray-600">
+            Already have an account? <Link to="/login" className="text-green-600 hover:text-green-800 font-medium transition-colors duration-200">Login here</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
