@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | SIM Pesantren</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        /* Menggunakan warna hijau gelap/tosyl khas Donezo */
+        .bg-primary { background-color: #10B981; } /* Tailwind Green-500 */
+        .text-primary { color: #10B981; }
+        .bg-primary-dark { background-color: #047857; } /* Tailwind Green-700 */
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<div x-data="{ sidebarOpen: false }" class="flex h-screen">
+
+    <aside x-cloak x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" 
+           class="fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-2xl overflow-y-auto lg:translate-x-0 lg:static lg:inset-0" :class="{ 'translate-x-0 ease-out': sidebarOpen, '-translate-x-full ease-in': !sidebarOpen }">
+        
+        <div class="p-6 border-b border-gray-200">
+            <h1 class="text-2xl font-bold flex items-center space-x-2 text-primary">
+                <span class="text-3xl">🕌</span>
+                <span>SIM Pesantren</span>
+            </h1>
+        </div>
+        
+        <nav class="space-y-1 p-4">
+
+            <div class="text-xs text-gray-400 font-semibold uppercase mb-2 px-3">Menu</div>
+
+            <a href="#" class="flex items-center p-3 text-sm font-semibold rounded-xl text-white bg-primary shadow-lg shadow-green-200">
+                <span class="mr-3">🏠</span> Dashboard
+            </a>
+
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full flex justify-between items-center p-3 text-sm font-medium rounded-xl text-gray-700 hover:bg-gray-100 focus:outline-none transition duration-150">
+                    <span>📚 Data Induk</span>
+                    <svg class="w-4 h-4 transition-transform duration-300" :class="{ 'transform rotate-90': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <div x-show="open" x-collapse class="pl-5 pt-1 space-y-1">
+                    <a href="#" class="block p-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">Data Santri Aktif</a>
+                    <a href="#" class="block p-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">Registrasi Santri Baru</a>
+                    <a href="#" class="block p-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">Data Guru & Pegawai</a>
+                </div>
+            </div>
+
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full flex justify-between items-center p-3 text-sm font-medium rounded-xl text-gray-700 hover:bg-gray-100 focus:outline-none transition duration-150">
+                    <span>💰 Keuangan</span>
+                    <svg class="w-4 h-4 transition-transform duration-300" :class="{ 'transform rotate-90': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <div x-show="open" x-collapse class="pl-5 pt-1 space-y-1">
+                    <a href="#" class="block p-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">Pembayaran SPP</a>
+                    <a href="#" class="block p-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">Laporan Kas</a>
+                </div>
+            </div>
+
+            <div class="text-xs text-gray-400 font-semibold uppercase mb-2 pt-4 px-3">General</div>
+            
+            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-xl text-gray-700 hover:bg-gray-100 focus:outline-none transition duration-150">
+                ⚙️ Pengaturan
+            </a>
+            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-xl text-gray-700 hover:bg-gray-100 focus:outline-none transition duration-150">
+                ❓ Bantuan
+            </a>
+            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-xl text-red-500 hover:bg-red-50 focus:outline-none transition duration-150">
+                🚪 Logout
+            </a>
+            
+        </nav>
+
+        <div class="p-4 mt-8">
+            <div class="bg-gray-800 p-4 rounded-xl text-white">
+                <p class="text-sm font-semibold">Unduh Aplikasi Mobile</p>
+                <p class="text-xs text-gray-400 mt-1">Kelola dari mana saja.</p>
+                <button class="w-full mt-3 py-2 text-xs font-bold rounded-lg bg-primary hover:bg-green-600 transition">Download</button>
+            </div>
+        </div>
+
+    </aside>
+
+    <div x-show="sidebarOpen" x-transition:opacity x-transition.duration.300ms @click="sidebarOpen = false" class="fixed inset-0 z-20 bg-black opacity-50 lg:hidden"></div>
+    
+    <div class="flex-1 overflow-x-hidden overflow-y-auto">
+        
+        <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-20">
+            <nav class="flex items-center justify-between p-4 max-w-full mx-auto">
+                
+                <div class="flex items-center space-x-4">
+                    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden p-1 rounded-md hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                    </button>
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Cari santri, tugas, atau data..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-xl w-64 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <span class="absolute left-3 top-2 text-gray-400">🔍</span>
+                    </div>
+                </div>
+
+                <div x-data="{ profileOpen: false }" class="relative flex items-center space-x-4">
+                    <div class="hidden sm:block text-right text-xs">
+                        <p class="font-semibold text-gray-800">Admin Pesantren</p>
+                        <p class="text-gray-500">admin@pesantren.id</p>
+                    </div>
+                    <button @click="profileOpen = !profileOpen" class="flex items-center p-1 rounded-full hover:bg-gray-100 focus:outline-none">
+                        <img class="h-10 w-10 rounded-full object-cover border-2 border-primary" src="https://ui-avatars.com/api/?name=AP&background=10B981&color=fff&size=50" alt="Profile">
+                    </button>
+                    
+                    <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition class="absolute right-0 mt-32 w-48 bg-white rounded-xl overflow-hidden shadow-xl z-30 border border-gray-200">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil Saya</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 border-t border-gray-200">Keluar</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="p-4 sm:p-6 space-y-6">
+            
+            <h2 class="text-3xl font-bold text-gray-800">Dashboard</h2>
+            <p class="text-gray-500">Kelola data, prioritas, dan pantau keuangan pesantren dengan mudah.</p>
+
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <article class="bg-primary-dark p-6 rounded-xl shadow-lg text-white">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-medium">Total Santri</span>
+                        <span class="text-2xl">🧑‍🎓</span>
+                    </div>
+                    <p class="text-4xl font-bold mt-2">1.250</p>
+                    <p class="text-xs mt-1 text-green-300">↗ 5% dari bulan lalu</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-xl shadow-md border border-red-200">
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span class="text-xl font-medium">Pembayaran Tertunda</span>
+                        <span class="text-2xl">🚨</span>
+                    </div>
+                    <p class="text-4xl font-bold mt-2 text-red-600">45</p>
+                    <p class="text-xs mt-1 text-red-500">on Discuss / Segera Follow Up</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-xl shadow-md border border-blue-200">
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span class="text-xl font-medium">Santri Baru (Tahun Ini)</span>
+                        <span class="text-2xl">🆕</span>
+                    </div>
+                    <p class="text-4xl font-bold mt-2 text-blue-600">210</p>
+                    <p class="text-xs mt-1 text-blue-500">↗ 12% dari target</p>
+                </article>
+
+                 <article class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span class="text-xl font-medium">Guru & Staff Aktif</span>
+                        <span class="text-2xl">🧑‍🏫</span>
+                    </div>
+                    <p class="text-4xl font-bold mt-2 text-gray-800">75</p>
+                    <p class="text-xs mt-1 text-gray-500">Data Pegawai Valid</p>
+                </article>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <article class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Analisis Pemasukan (Bulan Ini)</h3>
+                    <div class="h-48 flex items-end justify-between space-x-4 p-2">
+                        <div class="w-1/6 h-3/5 bg-primary rounded-md opacity-70" title="Senin"></div>
+                        <div class="w-1/6 h-4/5 bg-primary rounded-md opacity-80" title="Selasa"></div>
+                        <div class="w-1/6 h-full bg-primary-dark rounded-md" title="Rabu (Puncak)"></div>
+                        <div class="w-1/6 h-2/3 bg-primary rounded-md opacity-70" title="Kamis"></div>
+                        <div class="w-1/6 h-1/2 bg-primary rounded-md opacity-50" title="Jumat"></div>
+                        <div class="w-1/6 h-1/4 bg-primary rounded-md opacity-30" title="Sabtu"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500 mt-2">
+                        <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+                    </div>
+                </article>
+
+                <article class="bg-primary-dark p-6 rounded-xl shadow-lg text-white">
+                    <h3 class="text-xl font-semibold mb-4">Tugas & Pengingat</h3>
+                    <p class="text-sm font-light">Tinjau Pembayaran SPP bulan Desember.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <p class="text-xs text-green-300">Waktu: 09:00 - 10:00 AM</p>
+                        <button class="bg-white text-primary px-3 py-1 text-sm font-semibold rounded-lg hover:bg-gray-100 transition">
+                            Mulai Tinjauan
+                        </button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <article class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Timeline Aktivitas Terbaru</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 border-b pb-3">
+                            <span class="text-xl text-primary mt-1">📝</span>
+                            <div>
+                                <p class="font-medium text-gray-800">Input Data Santri Baru (50 Orang)</p>
+                                <p class="text-xs text-gray-500">Due date: Nov 30, 2025</p>
+                            </div>
+                            <span class="ml-auto text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">Completed</span>
+                        </div>
+                         <div class="flex items-start space-x-3 border-b pb-3">
+                            <span class="text-xl text-yellow-500 mt-1">⏳</span>
+                            <div>
+                                <p class="font-medium text-gray-800">Verifikasi Laporan Keuangan Q4</p>
+                                <p class="text-xs text-gray-500">Due date: Dec 5, 2025</p>
+                            </div>
+                            <span class="ml-auto text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">In Progress</span>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="space-y-6">
+                    <article class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Status Santri</h3>
+                        <div class="flex items-center justify-center h-24">
+                            <div class="relative w-24 h-24 rounded-full border-8 border-gray-200 flex items-center justify-center">
+                                <div class="absolute inset-0 rounded-full" style="background: conic-gradient(#10B981 75%, #D1D5DB 75%);"></div>
+                                <span class="relative text-2xl font-bold text-gray-800">75%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-around text-sm mt-4">
+                            <span class="text-primary font-medium">Aktif</span>
+                            <span class="text-gray-500">Cuti</span>
+                            <span class="text-red-500">Keluar</span>
+                        </div>
+                    </article>
+
+                    <article class="bg-gray-800 p-6 rounded-xl shadow-lg text-white text-center">
+                        <h3 class="text-lg font-semibold mb-2">Pencatat Waktu</h3>
+                        <div class="text-5xl font-mono my-4">01:15:30</div>
+                        <div class="flex justify-center space-x-4">
+                            <button class="bg-primary text-white p-3 rounded-full hover:bg-green-600 transition">▶</button>
+                            <button class="bg-red-500 text-white p-3 rounded-full hover:bg-red-600 transition">⏹</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="p-4 text-center text-xs text-gray-500 border-t mt-6">
+            SIM Pesantren Dashboard - Dibuat dengan Tailwind CSS | &copy; 2025
+        </footer>
+    </div>
+
+</div>
+
+</body>
+</html>
